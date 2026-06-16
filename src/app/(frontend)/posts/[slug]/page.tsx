@@ -21,7 +21,7 @@ export default async function Page({
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
       <h1 className="text-4xl font-bold text-balance">{post?.title}</h1>
       <hr />
-      <Link href="/posts">&larr; Return to index</Link>
+      <Link href="/posts">&larr; Return to index.</Link>
     </main>
   );
 }
