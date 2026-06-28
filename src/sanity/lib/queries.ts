@@ -25,3 +25,11 @@ export const PAGINATED_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(s
   mainImage,
   "categories": categories[]->title
 }`);
+
+export const CATEGORIES_QUERY = defineQuery(`*[_type == "category" && defined(slug.current)] | order(_createdAt asc) {
+  _id,
+  title,
+  slug,
+  description,
+  mainImage
+}`);

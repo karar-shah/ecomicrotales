@@ -6,3 +6,28 @@
   --color-brand: #89ea5f;
   --color-brand-dark: #0b150a;
 }
+
+.inverted-triangle-clamp {
+  display: block;
+  position: relative;
+  max-height: 2.5rem; /* 40px for two lines */
+  line-height: 1.25rem; /* 20px line-height */
+  overflow: hidden;
+  text-align: center;
+}
+
+.inverted-triangle-clamp::before {
+  content: "";
+  float: left;
+  width: 12%; /* Squeezes the second line slightly on the left */
+  height: 2.5rem;
+  shape-outside: polygon(0 0, 0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.inverted-triangle-clamp::after {
+  content: "";
+  float: right;
+  width: 12%; /* Squeezes the second line slightly on the right */
+  height: 2.5rem;
+  shape-outside: polygon(100% 0, 100% 50%, 0 50%, 0 100%, 100% 100%);
+}

@@ -22,5 +22,21 @@ export const categoryType = defineType({
       name: 'description',
       type: 'text',
     }),
+    defineField({
+      name: 'mainImage',
+      type: 'image',
+      title: 'Main Image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+        }),
+      ],
+    }),
   ],
 })
