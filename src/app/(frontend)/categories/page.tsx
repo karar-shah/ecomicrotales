@@ -9,16 +9,13 @@ export default async function CategoriesPage() {
   const categories = data as Category[];
 
   return (
-    <main className="w-full min-h-screen bg-white text-neutral-900">
+    <main className="w-full min-h-screen bg-[#eff1ed] text-neutral-900">
       <PageHero
         title="Categories"
-        imageSrc="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=3174&auto=format&fit=crop"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Categories" }
-        ]}
+        imageSrc="/category4.png"
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Categories" }]}
       />
-      
+
       <div className="max-w-7xl mx-auto px-10 py-24">
         {categories.length > 0 ? (
           <CategoryList categories={categories} />

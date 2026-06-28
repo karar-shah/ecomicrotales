@@ -24,7 +24,7 @@ export default function CategoryList({
           href={`/categories/${category.slug.current}`}
           className="flex flex-col group rounded-2xl overflow-hidden  bg-white dark:bg-[#222929] hover:shadow-lg transition-shadow"
         >
-          <div className="relative h-48 w-full overflow-hidden">
+          <div className="relative h-52 w-full overflow-hidden">
             {category.mainImage ? (
               <Image
                 src={urlFor(category.mainImage).url()}

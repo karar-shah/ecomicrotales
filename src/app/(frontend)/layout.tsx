@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import { SanityLive } from "@/sanity/lib/live";
 import DesktopNav from "@/components/Nav/DesktopNav";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Eco Micro Tales",
@@ -17,6 +18,7 @@ export default function FrontendLayout({
     <>
       <DesktopNav />
       {children}
+      <Footer />
       <SanityLive />
     </>
   );
