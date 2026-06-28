@@ -3,4 +3,6 @@
 
 @theme {
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #89ea5f;
+  --color-brand-dark: #0b150a;
 }

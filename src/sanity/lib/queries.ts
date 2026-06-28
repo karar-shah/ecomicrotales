@@ -9,3 +9,19 @@ export const POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{
   title, body, mainImage
 }`);
+
+export const LATEST_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  slug,
+  mainImage,
+  "categories": categories[]->title
+}`);
+
+export const PAGINATED_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[$start...$end] {
+  _id,
+  title,
+  slug,
+  mainImage,
+  "categories": categories[]->title
+}`);
