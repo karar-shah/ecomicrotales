@@ -12,9 +12,11 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const slug = await params;
+  console.log("/frontend/posts/[slug]", slug);
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
-    params: await params,
+    params: slug,
   });
 
   if (!post) {
@@ -22,7 +24,7 @@ export default async function Page({
   }
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12 max-w-[1270px]">
+    <main className="container mx-auto grid grid-cols-1 gap-6 p-12 max-w-[1270px] md:mt-20">
       {post?.mainImage ? (
         <Image
           className="max-w-[1270px] w-full aspect-2/1 object-cover rounded-2xl shadow-lg mx-auto"

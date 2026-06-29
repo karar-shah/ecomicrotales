@@ -1,10 +1,20 @@
+"use client";
+
 import { Sprout, ArrowRight, Menu } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 export default function DesktopNav() {
+  const pathname = usePathname();
+  const isPostRoute = pathname
+    ? pathname.startsWith("/post") || pathname.startsWith("/posts")
+    : false;
+
   return (
-    <div className="absolute top-0 left-0 w-full z-50">
+    <div
+      className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${isPostRoute ? "bg-gradient-to-b from-brand-dark  via-[35%] to-white" : ""}`}
+    >
       <div className="flex justify-between items-center py-5 px-10">
         <div className="flex items-center gap-3">
           <div className="font-bold bg-brand w-12 h-12 rounded-full flex justify-center items-center">
@@ -14,21 +24,24 @@ export default function DesktopNav() {
         </div>
         <nav className="flex items-center gap-8">
           {[
-            { name: "Home", href: "/", active: true },
+            { name: "Home", href: "/" },
             { name: "Micro Stories", href: "/micro-stories" },
             { name: "About Us", href: "/about" },
             { name: "Contact Us", href: "/contact" },
-          ].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-[15px] font-semibold transition-colors duration-300 hover:text-brand cursor-pointer ${
-                item.active ? "text-brand" : "text-white"
-              }`}
-            >
-              {item.name} {item.active}
-            </Link>
-          ))}
+          ].map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`text-[15px] font-semibold transition-colors duration-300 hover:text-brand cursor-pointer ${
+                  isActive ? "text-brand" : "text-white"
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-4">
           <Link
