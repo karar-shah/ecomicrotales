@@ -93,7 +93,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "Home", href: "/" },
-                { name: "Micro Stories", href: "/micro-stories" },
+                { name: "Micro Stories", href: "/posts" },
                 { name: "Categories", href: "/categories" },
                 { name: "About Us", href: "/about" },
                 { name: "Contact Us", href: "/contact" },
@@ -145,7 +145,7 @@ export default function Footer() {
               storytellers.
             </p>
             <Link
-              href="/contact"
+              href="/get-involved"
               className="inline-flex items-center gap-2 bg-brand text-black font-semibold text-sm pl-5 pr-3.5 py-2.5 rounded-full hover:bg-brand/90 transition-colors"
             >
               Write to Us

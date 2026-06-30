@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Play,
   ArrowRight,
@@ -50,12 +51,15 @@ export default function Hero() {
           </p>
 
           <div className="flex items-center gap-6">
-            <button className="flex items-center gap-2 bg-brand text-black font-semibold pl-6 pr-4 py-3 rounded-full hover:bg-brand/90 transition-colors">
+            <Link
+              href="/get-involved"
+              className="flex items-center gap-2 bg-brand text-black font-semibold pl-6 pr-4 py-3 rounded-full hover:bg-brand/90 transition-colors"
+            >
               Get Involved
               <span className="bg-black text-brand rounded-full w-6 h-6 flex items-center justify-center ml-1">
                 <ArrowRight size={14} />
               </span>
-            </button>
+            </Link>
 
             <button className="flex items-center gap-3 text-white font-semibold group">
               <span className="bg-brand text-black w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-brand/90 transition-colors">

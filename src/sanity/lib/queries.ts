@@ -7,7 +7,27 @@ export const POSTS_QUERY =
 
 export const POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{
-  title, body, mainImage
+  title, body, mainImage,
+  author->{
+    name,
+    slug,
+    image,
+    bio
+  }
+}`);
+
+export const AUTHOR_QUERY = defineQuery(`*[_type == "author" && slug.current == $slug][0] {
+  _id,
+  name,
+  image,
+  bio,
+  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    mainImage,
+    "categories": categories[]->title
+  }
 }`);
 
 export const LATEST_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {
