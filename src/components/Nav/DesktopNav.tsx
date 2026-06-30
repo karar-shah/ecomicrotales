@@ -13,7 +13,7 @@ export default function DesktopNav() {
 
   return (
     <div
-      className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${isPostRoute ? "bg-gradient-to-b from-brand-dark  via-[35%] to-white" : ""}`}
+      className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${isPostRoute ? "bg-linear-to-b from-brand-dark  via-35% to-white" : ""}`}
     >
       <div className="flex justify-between items-center py-5 px-10">
         <div className="flex items-center gap-3">

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -19,9 +19,9 @@ export default function MicroStoriesList({ posts }: { posts: Post[] }) {
         <Link
           key={post._id}
           href={`/posts/${post.slug.current}`}
-          className="flex flex-col group"
+          className="flex flex-col group bg-white border border-neutral-200/60 rounded-3xl p-5 hover:shadow-xl hover:border-brand/40 transition-all duration-300 h-full"
         >
-          <div className="relative h-64 mb-5 rounded-2xl overflow-hidden block">
+          <div className="relative h-56 mb-5 rounded-2xl overflow-hidden block bg-neutral-100">
             {post.mainImage ? (
               <Image
                 src={urlFor(post.mainImage).url()}
@@ -30,29 +30,34 @@ export default function MicroStoriesList({ posts }: { posts: Post[] }) {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-white/50">
+              <div className="w-full h-full bg-neutral-200 flex items-center justify-center text-neutral-500">
                 No Image
-              </div>
-            )}
-
-            {post.categories && post.categories.length > 0 && (
-              <div className="absolute top-4 left-4 bg-black/45 backdrop-blur-md backdrop-saturate-150 text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/15 shadow-sm">
-                {post.categories[0]}
               </div>
             )}
           </div>
 
-          <h3 className="text-xl font-bold text-neutral-900 mb-5 group-hover:text-brand transition-colors line-clamp-2">
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-brand-dark/40 mb-3">
+            {post.categories && post.categories.length > 0 && (
+              <span className="text-[#3b7d20] bg-brand/15 px-2.5 py-0.5 rounded-full">
+                {post.categories[0]}
+              </span>
+            )}
+            <div className="flex items-center gap-1.5 ml-1">
+              <Clock size={13} className="text-[#3b7d20]/75" />
+              <span>{post._id ? (post._id.charCodeAt(post._id.length - 1) % 3) + 3 : 3} min read</span>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-bold text-neutral-900 mb-5 group-hover:text-[#3b7d20] transition-colors line-clamp-2 leading-snug">
             {post.title}
           </h3>
 
-          <hr className="mb-3 bg-neutral-200 border-0 h-px rounded-full" />
-
-          <div className="flex items-center gap-3 text-neutral-900 font-semibold group/btn mt-auto self-start">
-            Read More
-            <span className="bg-brand text-black rounded-full w-8 h-8 flex items-center justify-center group-hover/btn:bg-brand/90 transition-colors">
-              <ArrowRight size={16} />
-            </span>
+          <div className="flex items-center gap-2 mt-auto text-sm font-bold text-brand-dark group-hover:text-[#3b7d20] transition-colors pt-4 border-t border-neutral-100 w-full">
+            <span>Read Full Story</span>
+            <ArrowRight
+              size={16}
+              className="transform group-hover:translate-x-1 transition-transform"
+            />
           </div>
         </Link>
       ))}

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
+import { ArrowRight } from "lucide-react";
 
 export type Category = {
   _id: string;
@@ -22,9 +23,9 @@ export default function CategoryList({
         <Link
           key={category._id}
           href={`/categories/${category.slug.current}`}
-          className="flex flex-col group rounded-2xl overflow-hidden  bg-white dark:bg-[#222929] hover:shadow-lg transition-shadow"
+          className="flex flex-col group rounded-3xl overflow-hidden bg-white border border-neutral-200/60 hover:shadow-xl hover:border-brand/40 transition-all duration-300 h-full"
         >
-          <div className="relative h-52 w-full overflow-hidden">
+          <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
             {category.mainImage ? (
               <Image
                 src={urlFor(category.mainImage).url()}
@@ -33,28 +34,34 @@ export default function CategoryList({
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <div className="w-full h-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center text-neutral-500">
+              <div className="w-full h-full bg-neutral-200 flex items-center justify-center text-neutral-500">
                 No Image
               </div>
             )}
           </div>
 
-          <div className="p-6 flex flex-col items-center text-center grow">
-            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3 group-hover:text-brand transition-colors">
+          <div className="p-6 flex flex-col items-start text-left grow">
+            <h3 className="text-xl font-bold text-neutral-900 mb-2.5 group-hover:text-[#3b7d20] transition-colors">
               {category.title}
             </h3>
 
             {category.description ? (
-              <p className="text-neutral-600 dark:text-neutral-400 leading-5 inverted-triangle-clamp text-base">
-                {category.description.length > 80
-                  ? `${category.description.slice(0, 80).trim()}...`
-                  : category.description}
+              <p className="text-neutral-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                {category.description}
               </p>
             ) : (
-              <p className="text-neutral-400 italic text-base leading-5">
+              <p className="text-neutral-400 italic text-sm mb-6">
                 No description available.
               </p>
             )}
+
+            <div className="flex items-center gap-2 mt-auto text-sm font-bold text-brand-dark group-hover:text-[#3b7d20] transition-colors pt-4 border-t border-neutral-100 w-full">
+              <span>Explore Category</span>
+              <ArrowRight
+                size={16}
+                className="transform group-hover:translate-x-1 transition-transform"
+              />
+            </div>
           </div>
         </Link>
       ))}

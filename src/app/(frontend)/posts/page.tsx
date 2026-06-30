@@ -28,7 +28,7 @@ export default async function PostsPage({
   const displayedPosts = posts.slice(0, limit);
 
   return (
-    <main className="w-full min-h-screen bg-white text-neutral-900">
+    <main className="w-full min-h-screen bg-[#eff1ed] text-neutral-900">
       <PageHero
         title="Our Micro Stories"
         imageSrc="/mahesh.jpg"

@@ -7,6 +7,7 @@ import {
   TreeDeciduous,
   Eye,
   GalleryVerticalEnd,
+  BookOpen,
 } from "lucide-react";
 
 export default function Hero() {
@@ -74,9 +75,7 @@ export default function Hero() {
                 <Sun size={26} className="text-black" />
               </div>
               <h3 className="text-white font-semibold text-lg leading-snug">
-                Wildlife Protection
-                <br />
-                Initiatives
+                Foster a deeper understanding of our environmental impact
               </h3>
             </div>
 
@@ -86,21 +85,17 @@ export default function Hero() {
                 <Leaf size={26} className="text-black" />
               </div>
               <h3 className="text-white font-semibold text-lg leading-snug">
-                Support biodivers
-                <br />
-                conservation
+                Take action today to build a significantly greener future
               </h3>
             </div>
 
             {/* Card 3 */}
             <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center gap-5 hover:bg-white/20 transition-colors">
               <div className="bg-brand w-14 h-14 rounded-full flex items-center justify-center shrink-0">
-                <TreeDeciduous size={26} className="text-black" />
+                <BookOpen size={26} className="text-black" />
               </div>
               <h3 className="text-white font-semibold text-lg leading-snug">
-                Drives climate action
-                <br />
-                initiatives
+                We believe that every story deeply matters
               </h3>
             </div>
           </div>
