@@ -221,6 +221,17 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      {/* bg image extream left */}
+      <div className="absolute bottom-0 left-0 w-full h-full pointer-events-none max-w-[350px]">
+        <Image
+          src="/section-bg-image-1.png"
+          alt=""
+          fill
+          className="object-contain object-bottom-left"
+          aria-hidden="true"
+        />
+      </div>
     </footer>
   );
 }

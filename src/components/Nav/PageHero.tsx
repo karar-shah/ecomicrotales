@@ -17,7 +17,7 @@ export default function PageHero({
   breadcrumbs,
 }: PageHeroProps) {
   return (
-    <div className="relative w-full h-[55vh] min-h-[400px] flex flex-col justify-center items-center overflow-hidden">
+    <div className="relative w-full h-[40vh] min-h-[400px] flex flex-col justify-center items-center overflow-hidden">
       {/* Background Image */}
       <Image
         src={imageSrc}

@@ -312,24 +312,6 @@ export type LATEST_POSTS_QUERY_RESULT = Array<{
 }>;
 
 // Source: src/sanity/lib/queries.ts
-// Variable: PAGINATED_POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc)[$start...$end] {  _id,  title,  slug,  mainImage,  "categories": categories[]->title}
-export type PAGINATED_POSTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  slug: Slug;
-  mainImage: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  } | null;
-  categories: Array<string | null> | null;
-}>;
-
-// Source: src/sanity/lib/queries.ts
 // Variable: CATEGORIES_QUERY
 // Query: *[_type == "category" && defined(slug.current)] | order(_createdAt asc) {  _id,  title,  slug,  description,  mainImage}
 export type CATEGORIES_QUERY_RESULT = Array<{
@@ -347,6 +329,38 @@ export type CATEGORIES_QUERY_RESULT = Array<{
   } | null;
 }>;
 
+// Source: src/sanity/lib/queries.ts
+// Variable: CATEGORY_QUERY
+// Query: *[_type == "category" && slug.current == $slug][0] {  _id,  title,  slug,  description,  mainImage,  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {    _id,    title,    slug,    mainImage,    "categories": categories[]->title  }}
+export type CATEGORY_QUERY_RESULT = {
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  description: string | null;
+  mainImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  posts: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+    mainImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    categories: Array<string | null> | null;
+  }>;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -354,7 +368,7 @@ declare module "@sanity/client" {
     '*[_type == "post" && defined(slug.current)][0...12]{\n  _id, title, slug\n}': POSTS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0]{\n  title, body, mainImage\n}': POST_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  "categories": categories[]->title\n}': LATEST_POSTS_QUERY_RESULT;
-    '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[$start...$end] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  "categories": categories[]->title\n}': PAGINATED_POSTS_QUERY_RESULT;
     '*[_type == "category" && defined(slug.current)] | order(_createdAt asc) {\n  _id,\n  title,\n  slug,\n  description,\n  mainImage\n}': CATEGORIES_QUERY_RESULT;
+    '*[_type == "category" && slug.current == $slug][0] {\n  _id,\n  title,\n  slug,\n  description,\n  mainImage,\n  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {\n    _id,\n    title,\n    slug,\n    mainImage,\n    "categories": categories[]->title\n  }\n}': CATEGORY_QUERY_RESULT;
   }
 }

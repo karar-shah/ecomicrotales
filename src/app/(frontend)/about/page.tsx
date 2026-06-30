@@ -56,7 +56,7 @@ export default function AboutPage() {
       {/* Page Hero */}
       <PageHero
         title="About Us"
-        imageSrc="/category4.png"
+        imageSrc="/about-us6.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
       />
 

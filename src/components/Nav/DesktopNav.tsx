@@ -1,14 +1,13 @@
 "use client";
 
-import { Sprout, ArrowRight, Menu } from "lucide-react";
+import { Sprout, ArrowRight, Smile } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { usePathname } from "next/navigation";
 
 export default function DesktopNav() {
   const pathname = usePathname();
   const isPostRoute = pathname
-    ? pathname.startsWith("/post") || pathname.startsWith("/posts")
+    ? pathname.startsWith("/post/") || pathname.startsWith("/posts/")
     : false;
 
   return (
@@ -25,7 +24,8 @@ export default function DesktopNav() {
         <nav className="flex items-center gap-8">
           {[
             { name: "Home", href: "/" },
-            { name: "Micro Stories", href: "/micro-stories" },
+            { name: "Micro Stories", href: "/posts" },
+            { name: "Categories", href: "/categories" },
             { name: "About Us", href: "/about" },
             { name: "Contact Us", href: "/contact" },
           ].map((item) => {
@@ -54,7 +54,7 @@ export default function DesktopNav() {
             </span>
           </Link>
           <button className="bg-brand text-black w-11 h-11 rounded-full flex items-center justify-center hover:bg-brand/90 transition-colors">
-            <Menu size={24} />
+            <Smile size={24} />{" "}
           </button>
         </div>
       </div>

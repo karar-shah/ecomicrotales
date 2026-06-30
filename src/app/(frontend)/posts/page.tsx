@@ -18,11 +18,11 @@ export default async function PostsPage({
 
   // We fetch one extra to see if there is a next page
   const { data } = await sanityFetch({
-    query: PAGINATED_POSTS_QUERY,
-    params: { start, end: end + 1 },
+    query: PAGINATED_POSTS_QUERY(start, end + 1),
   });
 
   const posts = data as Post[];
+  console.log("posts/slug/ [posts]", posts);
 
   const hasNextPage = posts.length > limit;
   const displayedPosts = posts.slice(0, limit);
@@ -31,7 +31,7 @@ export default async function PostsPage({
     <main className="w-full min-h-screen bg-[#eff1ed] text-neutral-900">
       <PageHero
         title="Our Micro Stories"
-        imageSrc="/mahesh.jpg"
+        imageSrc="/category4.png"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Blog" }]}
       />
 

@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { components } from "@/sanity/portableTextComponents";
+import { ArrowLeft } from "lucide-react";
 
 export default async function Page({
   params,
@@ -45,8 +46,14 @@ export default async function Page({
           </div>
         ) : null}
         <hr />
-        <Link href="/posts" className="inline-block hover:underline">
-          &larr; Return to catalog.
+        <Link
+          href="/posts"
+          className="inline-flex items-center gap-3 text-brand-dark/80 hover:text-brand-dark font-semibold transition-colors duration-300 group mt-4"
+        >
+          <span className="bg-brand text-black rounded-full w-8 h-8 flex items-center justify-center transition-transform group-hover:-translate-x-1">
+            <ArrowLeft size={16} />
+          </span>
+          Return to catalog
         </Link>
       </div>
     </main>
