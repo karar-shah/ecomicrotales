@@ -15,6 +15,17 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/sanity/extract.json
+export type Video = {
+  _id: string;
+  _type: "video";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  youtubeUrl: string;
+  categories?: Array<string>;
+};
+
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -249,6 +260,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Video
   | AuthorReference
   | SanityImageAssetReference
   | CategoryReference
@@ -372,6 +384,16 @@ export type CATEGORIES_QUERY_RESULT = Array<{
 }>;
 
 // Source: src/sanity/lib/queries.ts
+// Variable: VIDEOS_QUERY
+// Query: *[_type == "video"] | order(_createdAt desc) {  _id,  title,  youtubeUrl,  categories}
+export type VIDEOS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string;
+  youtubeUrl: string;
+  categories: Array<string> | null;
+}>;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: CATEGORY_QUERY
 // Query: *[_type == "category" && slug.current == $slug][0] {  _id,  title,  slug,  description,  mainImage,  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {    _id,    title,    slug,    mainImage,    "categories": categories[]->title  }}
 export type CATEGORY_QUERY_RESULT = {
@@ -412,6 +434,7 @@ declare module "@sanity/client" {
     '*[_type == "author" && slug.current == $slug][0] {\n  _id,\n  name,\n  image,\n  bio,\n  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {\n    _id,\n    title,\n    slug,\n    mainImage,\n    "categories": categories[]->title\n  }\n}': AUTHOR_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  "categories": categories[]->title\n}': LATEST_POSTS_QUERY_RESULT;
     '*[_type == "category" && defined(slug.current)] | order(_createdAt asc) {\n  _id,\n  title,\n  slug,\n  description,\n  mainImage\n}': CATEGORIES_QUERY_RESULT;
+    '*[_type == "video"] | order(_createdAt desc) {\n  _id,\n  title,\n  youtubeUrl,\n  categories\n}': VIDEOS_QUERY_RESULT;
     '*[_type == "category" && slug.current == $slug][0] {\n  _id,\n  title,\n  slug,\n  description,\n  mainImage,\n  "posts": *[_type == "post" && references(^._id) && defined(slug.current)] | order(publishedAt desc) {\n    _id,\n    title,\n    slug,\n    mainImage,\n    "categories": categories[]->title\n  }\n}': CATEGORY_QUERY_RESULT;
   }
 }

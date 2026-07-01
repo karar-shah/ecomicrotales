@@ -54,6 +54,13 @@ export const CATEGORIES_QUERY = defineQuery(`*[_type == "category" && defined(sl
   mainImage
 }`);
 
+export const VIDEOS_QUERY = defineQuery(`*[_type == "video"] | order(_createdAt desc) {
+  _id,
+  title,
+  youtubeUrl,
+  categories
+}`);
+
 export const CATEGORY_QUERY = defineQuery(`*[_type == "category" && slug.current == $slug][0] {
   _id,
   title,

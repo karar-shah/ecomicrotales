@@ -95,7 +95,7 @@ export default function AboutPage() {
               {/* Background Glow */}
               <div className="absolute -right-20 -top-20 w-60 h-60 bg-brand/10 rounded-full blur-3xl group-hover:bg-brand/20 transition-all duration-500"></div>
 
-              <div className="relative z-10 flex flex-col justify-between h-full min-h-[300px]">
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-75">
                 <div>
                   <div className="bg-brand text-black w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
                     <Leaf size={24} />
