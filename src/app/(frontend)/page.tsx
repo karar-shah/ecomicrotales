@@ -63,8 +63,8 @@ export default async function Page() {
 
       {/* Categories Section */}
       <section className="w-full bg-[linear-gradient(135deg,#fcfcfa_0%,#f4f6ef_45%,#f9f8f2_100%)] py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(137,234,95,0.08),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,125,32,0.06),transparent_35%)]" />
-        <div className="max-w-7xl mx-auto px-10 text-brand-dark">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(137,234,95,0.08),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,125,32,0.06),transparent_35%)]" />
+        <div className="relative z-10 max-w-7xl mx-auto px-10 text-brand-dark">
           <div className="text-start max-w-3xl  mb-16">
             <div className="inline-flex items-center gap-2 bg-brand/20 border border-brand/30 px-4 py-1.5 rounded-full mb-4">
               {/* <span className="w-2 h-2 rounded-full bg-[#89ea5f]"></span> */}
